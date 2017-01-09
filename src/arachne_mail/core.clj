@@ -1,8 +1,4 @@
-(ns arachne-mail.core
-  )
-
-(defn hello []
-  "hello world")
+(ns arachne-mail.core)
 
 (defprotocol MailConfig
   (defaults [this from subject body]))
@@ -10,9 +6,21 @@
 (defrecord ApacheCommons [hostname smtp-port authenticator tls]
   MailConfig
   (defaults [this from subject body]
-    (str "testing sending mail from: " from " with subject: " subject)))
+    {:hostname hostname
+     :smtp-port smtp-port
+     :authenticator authenticator
+     :tls tls
+     :from from
+     :subject subject
+     :body body}))
 
 (defrecord SesMailer [provider access-key secret-key region]
   MailConfig
   (defaults [this from subject body]
-    (str "testing sending mail from: " from " with subject: " subject)))
+    {:provider provider
+     :access-key access-key
+     :secret-key secret-key
+     :region region
+     :from from 
+     :subject subject
+     :body body}))
