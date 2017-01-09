@@ -1,4 +1,4 @@
-(ns arachne-mail.core)
+(ns arachne.mail)
 
 (defprotocol MailConfig
   (defaults [this from subject body]))
