@@ -1,11 +1,11 @@
 (ns arachne.mail)
 
 (defprotocol MailConfig
-  (defaults [this from subject body]))
+  (sendmail! [this from subject body]))
 
 (defrecord ApacheCommons [hostname smtp-port authenticator tls]
   MailConfig
-  (defaults [this from subject body]
+  (sendmail! [this from subject body]
     {:hostname hostname
      :smtp-port smtp-port
      :authenticator authenticator
@@ -16,7 +16,7 @@
 
 (defrecord SesMailer [provider access-key secret-key region]
   MailConfig
-  (defaults [this from subject body]
+  (sendmail! [this from subject body]
     {:provider provider
      :access-key access-key
      :secret-key secret-key

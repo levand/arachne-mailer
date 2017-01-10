@@ -4,34 +4,34 @@
 
 
 (deftest test-apache-commons-base-config
-  (let [config (mail/->ApacheCommons "host" 122 "test-auth" 42)]
-    (is (= (class config) arachne.mail.ApacheCommons))
-    (is (= (:hostname config) "host"))
-    (is (= (:smtp-port config) 122))
-    (is (= (:authenticator config) "test-auth")
-    (is (= (:tls config) 42)))))
+  (let [mailer (mail/->ApacheCommons "host" 122 "test-auth" 42)]
+    (is (= (class mailer) arachne.mail.ApacheCommons))
+    (is (= (:hostname mailer) "host"))
+    (is (= (:smtp-port mailer) 122))
+    (is (= (:authenticator mailer) "test-auth")
+    (is (= (:tls mailer) 42)))))
 
 (deftest test-apache-commons-combined-config
-  (let [config (mail/->ApacheCommons "host" 122 "test-auth" 42)
-        big (mail/defaults config "admin@rubygeek.com" "tacos" "yummy tacos")] 
-    (is (= (:tls big) 42))
-    (is (= (:hostname big) "host"))
-    (is (= (:subject big) "tacos"))
-    (is (= (:body big) "yummy tacos"))))
+  (let [mailer (-> (mail/->ApacheCommons "host" 122 "test-auth" 42)
+                   (mail/sendmail! "admin@rubygeek.com" "tacos" "yummy tacos"))] 
+    (is (= (:tls mailer) 42))
+    (is (= (:hostname mailer) "host"))
+    (is (= (:subject mailer) "tacos"))
+    (is (= (:body mailer) "yummy tacos"))))
               
 
 (deftest test-amazon-ses-mail-config
-  (let [config (mail/->SesMailer "aws" "access-key-number" "secret-key-number" :aws-east1)]
-    (is (= (class config) arachne.mail.SesMailer))
-    (is (= (:provider config) "aws"))
-    (is (= (:access-key config) "access-key-number"))
-    (is (= (:secret-key config) "secret-key-number"))
-    (is (= (:region config)) :aws-east1)))
+  (let [mailer (mail/->SesMailer "aws" "access-key-number" "secret-key-number" :aws-east1)]
+    (is (= (class mailer) arachne.mail.SesMailer))
+    (is (= (:provider mailer) "aws"))
+    (is (= (:access-key mailer) "access-key-number"))
+    (is (= (:secret-key mailer) "secret-key-number"))
+    (is (= (:region mailer)) :aws-east1)))
 
 (deftest test-amazon-ses-mail-combined-config
-  (let [config (mail/->SesMailer "aws" "access-key-number" "secret-key-number" :aws-east1)
-        big (mail/defaults config "admin@rubygeek.com" "tacos" "yummy tacos")]
-    (is (= (:access-key big) "access-key-number"))
-    (is (= (:region big) :aws-east1))
-    (is (= (:subject big) "tacos"))
-    (is (= (:body big) "yummy tacos"))))
+  (let [ mailer (-> (mail/->SesMailer "aws" "access-key-number" "secret-key-number" :aws-east1)
+                    (mail/sendmail! "admin@rubygeek.com" "tacos" "yummy tacos"))]
+    (is (= (:access-key mailer) "access-key-number"))
+    (is (= (:region mailer) :aws-east1))
+    (is (= (:subject mailer) "tacos"))
+    (is (= (:body mailer) "yummy tacos"))))
