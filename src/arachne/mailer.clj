@@ -1,4 +1,4 @@
-(ns arachne.mail
+(ns arachne.mailer
   #_[arachne.core.config :as cfg]
   #_[arachne.mail.schema :as schema])
 
