@@ -1,4 +1,4 @@
-# arachne-mail
+# arachne-mailer
 
 TODO: Brief description
 
@@ -19,8 +19,8 @@ TODO: Brief description
 [Maven] dependency information:
 
     <dependency>
-      <groupId>arachne-mail</groupId>
-      <artifactId>arachne-mail</artifactId>
+      <groupId>arachne-mailer</groupId>
+      <artifactId>arachne-mailer</artifactId>
       <version>0.1.0-SNAPSHOT</version>
     </dependency>
 

@@ -2,7 +2,7 @@
  ;; Edit project.edn or build.boot if you want to modify the real configuration
 (defproject
   arachne-mailer
-  "0.1.0-converting-to-boot-0006-843802f"
+  "0.1.0-master-0011-0c69fdb"
   :dependencies
   [[org.clojure/clojure "1.9.0-alpha14" :scope "provided"]
    [org.arachne-framework/arachne-core "0.1.0-master-0062-a6074e6"]]
