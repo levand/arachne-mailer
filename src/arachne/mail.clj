@@ -1,11 +1,13 @@
-(ns arachne-mail.core)
+(ns arachne.mail
+  #_[arachne.core.config :as cfg]
+  #_[arachne.mail.schema :as schema])
 
-(defprotocol MailConfig
-  (defaults [this from subject body]))
+(defprotocol Mailer
+  (sendmail! [this from subject body]))
 
 (defrecord ApacheCommons [hostname smtp-port authenticator tls]
-  MailConfig
-  (defaults [this from subject body]
+  Mailer
+  (sendmail! [this from subject body]
     {:hostname hostname
      :smtp-port smtp-port
      :authenticator authenticator
@@ -15,8 +17,8 @@
      :body body}))
 
 (defrecord SesMailer [provider access-key secret-key region]
-  MailConfig
-  (defaults [this from subject body]
+  Mailer
+  (sendmail! [this from subject body]
     {:provider provider
      :access-key access-key
      :secret-key secret-key
@@ -24,3 +26,9 @@
      :from from 
      :subject subject
      :body body}))
+
+#_(defn mailer-component
+  [cfg]
+  (let [mailers (cfg/q cfg '[:find [?g ...]
+                     :where
+                     [?g :arachne-mail.mailer]])]))
