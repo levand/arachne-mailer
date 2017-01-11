@@ -1,6 +1,7 @@
 (ns arachne.mailer
   #_[arachne.core.config :as cfg]
-  #_[arachne.mail.schema :as schema])
+  #_[arachne.mail.schema :as schema]
+)
 
 (defprotocol Mailer
   (sendmail! [this from subject body]))

@@ -1,0 +1,3 @@
+[{:arachne.module/name :arachne-mailer
+  :arachne.module/schema arachne.mailer/schema
+  :arachne.module/dependencies [:org.arachne-framework/arachne-core]}]
