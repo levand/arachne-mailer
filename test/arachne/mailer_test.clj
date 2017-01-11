@@ -26,7 +26,7 @@
     (is (= (:provider config) "aws"))
     (is (= (:access-key config) "access-key-number"))
     (is (= (:secret-key config) "secret-key-number"))
-    (is (= (:region config)) :aws-east1)))
+    (is (= (:region config) :aws-east1))))
 
 (deftest test-amazon-ses-mail-combined-config
   (let [config (mailer/->SesMailer "aws" "access-key-number" "secret-key-number" :aws-east1)

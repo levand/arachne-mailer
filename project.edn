@@ -1,4 +1,4 @@
-{:project org.arachne-framework/arachne-mailer
+{:project arachne-mailer
  :version {:major 0, :minor 1, :patch 0, :qualifier :dev}
  :description "The abstract Mailer module for the Arachne web framework"
  :license {"Apache Software License 2.0" "http://www.apache.org/licenses/LICENSE-2.0"}

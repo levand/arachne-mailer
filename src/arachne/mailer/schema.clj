@@ -1,7 +1,7 @@
 (ns arachne.mailer.schema
   (:require [arachne.core.config.model :as m]))
 
-(def schema
+#_(def schema
   (concat
     (m/type :arachne.mailer/Mailer [:arachne/Component] :arachne.mailer.spec/Mailer)
 
@@ -22,4 +22,5 @@
       (m/attr :arachne.mailer.ses-mailer/secret-key :one :string
         "The secret key")
       (m/attr :arachne.mailer.ses-mailer/region :one :keyword
-        "The region as as keyword"))))
+        "The region as as keyword")))
+)
