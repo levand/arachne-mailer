@@ -1,9 +1,9 @@
 (ns arachne.mailer.schema
   (:require [arachne.core.config.model :as m]))
 
-#_(def schema
+(def schema
   (concat
-    (m/type :arachne.mailer/Mailer [:arachne/Component] :arachne.mailer.spec/Mailer)
+    (m/type :arachne.mailer/Mailer [:arachne/Component])
 
     (m/type :arachne.mailer/ApacheCommonsMailer [:arachne.mailer/Mailer]
       (m/attr :arachne.mailer.apache-commons/hostname :one :string
