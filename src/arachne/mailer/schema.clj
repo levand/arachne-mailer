@@ -4,8 +4,8 @@
 
 (def schema
   (concat
-    (m/type :arachne.mailer/Mailer [:arachne/Component] "A Mailer Component" :arachne.mailer.spec/Mailer 
-      )
+    (m/type :arachne.mailer/Mailer [:arachne/Component] 
+      "A Mailer Component" :arachne.mailer.spec/Mailer)
 
     (m/type :arachne.mailer/ApacheCommonsMailer [:arachne.mailer/Mailer]
       "Configuration for using apache commons mailer"
@@ -26,5 +26,4 @@
       (m/attr :arachne.mailer.ses-mailer/secret-key :one :string
         "The secret key")
       (m/attr :arachne.mailer.ses-mailer/region :one :keyword
-        "The region as as keyword")))
-)
+        "The region as as keyword"))))
