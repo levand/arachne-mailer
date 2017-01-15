@@ -1,3 +1,4 @@
-[{:arachne.module/name :arachne-mailer
+[{:arachne.module/name :com.rubygeek/arachne-mailer
   :arachne.module/schema arachne.mailer/schema
+  :arachne.module/configure clojure.core/identity
   :arachne.module/dependencies [:org.arachne-framework/arachne-core]}]

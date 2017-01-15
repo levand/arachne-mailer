@@ -28,3 +28,5 @@
 (defn construct-sesmailer [provider access-key secret-key region]
   (->SesMailer provider access-key secret-key region))
 
+(defn schema []
+  schema/schema)
