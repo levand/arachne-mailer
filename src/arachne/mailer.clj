@@ -1,35 +1,30 @@
 (ns arachne.mailer
-  #_[arachne.core.config :as cfg]
-  #_[arachne.mail.schema :as schema]
-)
+  (:require [arachne.mailer.schema :as schema]))
 
 (defprotocol Mailer
   (sendmail! [this from subject body]))
 
-(defrecord ApacheCommons [hostname smtp-port authenticator tls]
+(defrecord TestMailer []
   Mailer
   (sendmail! [this from subject body]
-    {:hostname hostname
-     :smtp-port smtp-port
-     :authenticator authenticator
-     :tls tls
-     :from from
-     :subject subject
-     :body body}))
+    (println "Calling sendmail! from TestMailer")))
+
+(defrecord ApacheMailer [hostname smtp-port authenticator tls]
+  Mailer
+  (sendmail! [this from subject body]
+    (println "Calling sendmail! from ApacheMailer")))
 
 (defrecord SesMailer [provider access-key secret-key region]
   Mailer
   (sendmail! [this from subject body]
-    {:provider provider
-     :access-key access-key
-     :secret-key secret-key
-     :region region
-     :from from 
-     :subject subject
-     :body body}))
+    (println "Calling sendmail! from SesMailer")))
 
-#_(defn mailer-component
-  [cfg]
-  (let [mailers (cfg/q cfg '[:find [?g ...]
-                     :where
-                     [?g :arachne-mail.mailer]])]))
+(defn construct-testmailer []
+  (->TestMailer))
+
+(defn construct-apachemailer [hostname smtp-port authenticator tls]
+  (->ApacheMailer hostname smtp-port authenticator tls))
+
+(defn construct-sesmailer [provider access-key secret-key region]
+  (->SesMailer provider access-key secret-key region))
+

@@ -5,7 +5,7 @@
 (def schema
   (concat
     (m/type :arachne.mailer/Mailer [:arachne/Component] 
-      "A Mailer Component" :arachne.mailer.spec/Mailer)
+      "A Mailer Component")
 
     (m/type :arachne.mailer/ApacheCommonsMailer [:arachne.mailer/Mailer]
       "Configuration for using apache commons mailer"
